@@ -45,7 +45,7 @@ strat.log = function() {
 // update or not.
 strat.check = function(candle) {
   
-  var atrResult = this.Indicators.myAtr.result;  
+  var atrResult = this.indicators.myAtr.result;  
 
   this.supertrend.upperBandBasic = ((candle.high + candle.low) / 2) + (this.settings.bandFactor * atrResult);
   this.supertrend.lowerBandBasic = ((candle.high + candle.low) / 2) - (this.settings.bandFactor * atrResult);
