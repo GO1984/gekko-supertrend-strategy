@@ -1,18 +1,16 @@
 // Let's create our own strategy
 
 var log = require('../core/log.js');
-var config = require('../core/util.js').getConfig();
-var settings = config.Supertrend;
+
 
 var strat = {};
 
 // Prepare everything our strat needs
 strat.init = function() {
   // your code!
-  this.requiredHistory = config.tradingAdvisor.historySize;
+  this.requiredHistory = this.tradingAdvisor.historySize;
 
-  this.addTalibIndicator("myAtr", "atr", {optInTimePeriod: settings.atrEma});
-
+  this.addIndicator("myAtr", "ATR", this.settings.atrEma);
   this.bought = 0;
 
   this.supertrend = {
@@ -47,10 +45,10 @@ strat.log = function() {
 // update or not.
 strat.check = function(candle) {
   
-  var atrResult = this.talibIndicators.myAtr.result.outReal;  
+  var atrResult = this.Indicators.myAtr.result;  
 
-  this.supertrend.upperBandBasic = ((candle.high + candle.low) / 2) + (settings.bandFactor * atrResult);
-  this.supertrend.lowerBandBasic = ((candle.high + candle.low) / 2) - (settings.bandFactor * atrResult);
+  this.supertrend.upperBandBasic = ((candle.high + candle.low) / 2) + (this.settings.bandFactor * atrResult);
+  this.supertrend.lowerBandBasic = ((candle.high + candle.low) / 2) - (this.settings.bandFactor * atrResult);
 
   if(this.supertrend.upperBandBasic < this.lastSupertrend.upperBand || this.lastCandleClose > this.lastSupertrend.upperBand)
     this.supertrend.upperBand = this.supertrend.upperBandBasic; 
@@ -96,3 +94,4 @@ strat.check = function(candle) {
 }
 
 module.exports = strat;
+
