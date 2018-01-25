@@ -11,8 +11,8 @@ var Indicator = function(historysize) {
     this.age = 0;
 
     this.lastcandle = false;
-    this.ATRhist = [];
-    this.TRhist = []
+    this.ATRhist = false;
+    this.TRhist = false;
 }
 
 Indicator.prototype.update = function(candle) {
@@ -34,10 +34,8 @@ Indicator.prototype.update = function(candle) {
         var TR = Math.max(TR_A, TR_B, TR_C);
 
 
-	var ATR = TR * (1/this.historysize) + this.ATRhist[this.TRhist.length-1] * ( (this.historysize-1) /this.historysize)
+	var ATR = TR * (1/this.historysize) + this.ATRhist * ( (this.historysize-1) /this.historysize)
  
-
-        var sumhist = this.ATRhist.reduce(function(a, b) { return a+b });
 
 
         this.result = ATR;
@@ -51,11 +49,10 @@ Indicator.prototype.update = function(candle) {
 
 	this.result = ATR;
 
-        this.ATRhist.push(ATR);
-	this.TRhist.push(TR);
+        this.ATRhist = ATR;
+	this.TRhist = TR;
 
-        if (this.ATRhist.length > this.ATRhist)
-            this.ATRhist.shift();
+ 
 
     this.lastcandle = candle;
 
