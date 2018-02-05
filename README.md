@@ -4,9 +4,10 @@ This strategy has been forked in order to adapt it for genetic algorithm usage, 
 with a native version, in order to take easier on CPU time.
 
 So even though I won't edit the rest of the readme, to install it you don't need TA-Lib node.js module. <br>
-What you need is `ATR.js` properly installed on your indicators folder of Gekko. You can find it here (https://github.com/Gab0/gekko-extra-indicators).
+What you need is `ATR.js` properly installed on your indicators folder of Gekko.
+You can find it here (https://github.com/Gab0/gekko-extra-indicators).
 
-Other small adaptations were further require for usage with GA's.
+Other small adaptations were further required for usage with GA's.
 
 Original readme below.
 
